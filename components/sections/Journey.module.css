@@ -1,0 +1,135 @@
+.journey {
+  position: relative;
+}
+
+.subtitle {
+  font-size: 1.0625rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 3.5rem;
+  max-width: 520px;
+}
+
+/* ── Timeline ── */
+.timeline {
+  position: relative;
+  padding-left: 60px;
+}
+
+.line {
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.lineFill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--color-accent), var(--color-accent-secondary), transparent);
+  transform-origin: top;
+  will-change: transform;
+}
+
+/* ── Item ── */
+.item {
+  position: relative;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Marker ── */
+.marker {
+  position: absolute;
+  left: -52px;
+  top: 0.5rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: border-color var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+.item:hover .marker {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 16px var(--color-accent-dim);
+}
+
+.markerIcon {
+  font-size: 1rem;
+}
+
+/* ── Card ── */
+.card {
+  padding: 1.5rem 1.75rem;
+  border-radius: var(--radius-md);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  transition: border-color var(--transition-medium), transform var(--transition-medium);
+}
+
+.item:hover .card {
+  border-color: rgba(0, 255, 136, 0.12);
+  transform: translateX(4px);
+}
+
+.year {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  background: var(--color-accent-dim);
+  padding: 0.15rem 0.5rem;
+  border-radius: 100px;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.375rem;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .timeline {
+    padding-left: 48px;
+  }
+
+  .marker {
+    left: -40px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .markerIcon {
+    font-size: 0.8rem;
+  }
+
+  .line {
+    left: 14px;
+  }
+
+  .card {
+    padding: 1.25rem;
+  }
+}

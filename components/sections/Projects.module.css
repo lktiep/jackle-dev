@@ -1,0 +1,26 @@
+.projects {
+  position: relative;
+}
+
+.description {
+  margin: 1rem 0 3rem;
+  font-size: 1.0625rem;
+  color: var(--color-text-secondary);
+  max-width: 520px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .description {
+    margin-bottom: 2rem;
+  }
+}

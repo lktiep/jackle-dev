@@ -1,0 +1,11 @@
+.container {
+  display: inline-flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.animUnit {
+  display: inline-block;
+  will-change: transform, opacity;
+  transform-origin: center bottom;
+}

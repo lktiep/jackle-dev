@@ -33,10 +33,11 @@ export default function FloatingGeometry({
         metalness: 0.1,
         roughness: 0.2,
         transparent: true,
-        opacity: 0.35,
+        opacity: 0.5,
         wireframe: true,
         emissive: new THREE.Color(color),
-        emissiveIntensity: 0.15,
+        emissiveIntensity: 0.5,
+        toneMapped: false,
       }),
     [color]
   );

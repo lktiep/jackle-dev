@@ -19,7 +19,10 @@
   --color-accent: #00ff88;
   --color-accent-dim: rgba(0, 255, 136, 0.1);
   --color-accent-glow: rgba(0, 255, 136, 0.25);
-  --color-accent-secondary: #00d4ff;
+  --color-accent-secondary: #00ddff;
+  --color-purple: #8855ff;
+  --color-magenta: #ff44aa;
+  --color-gold: #ffaa00;
 
   /* Glassmorphism */
   --glass-bg: rgba(18, 18, 26, 0.5);
@@ -152,10 +155,17 @@ button {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-secondary));
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-secondary), var(--color-purple));
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradientShift 4s ease-in-out infinite alternate;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% center; }
+  100% { background-position: 100% center; }
 }
 
 .glass {

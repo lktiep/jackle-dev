@@ -102,15 +102,18 @@ export default function GlowOrb() {
       vec3 color = mix(uColor1, uColor2, smoothstep(0.0, 0.5, t));
       color = mix(color, uColor3, smoothstep(0.5, 1.0, t));
 
-      // Fresnel-like glow at edges
-      float fresnel = pow(1.0 - abs(dot(normalize(vUv - 0.5), vec2(0.0, 1.0))), 2.0);
-      color += fresnel * 0.15;
+      // Dim the overall color intensity
+      color *= 0.55;
 
-      // Pulse brightness
-      float pulse = sin(uTime * 0.8) * 0.1 + 1.0;
+      // Fresnel-like glow at edges (subtle)
+      float fresnel = pow(1.0 - abs(dot(normalize(vUv - 0.5), vec2(0.0, 1.0))), 2.0);
+      color += fresnel * 0.08;
+
+      // Pulse brightness (subtle)
+      float pulse = sin(uTime * 0.8) * 0.05 + 1.0;
       color *= pulse;
 
-      gl_FragColor = vec4(color, 0.85);
+      gl_FragColor = vec4(color, 0.35);
     }
   `;
 

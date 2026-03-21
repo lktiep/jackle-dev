@@ -6,7 +6,7 @@
   font-size: 1.0625rem;
   color: var(--color-text-secondary);
   margin-bottom: 3.5rem;
-  max-width: 520px;
+  max-width: 600px;
 }
 
 /* ── Timeline ── */
@@ -61,8 +61,8 @@
 }
 
 .item:hover .marker {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 16px var(--color-accent-dim);
+  border-color: var(--accent, var(--color-accent));
+  box-shadow: 0 0 16px color-mix(in srgb, var(--accent, var(--color-accent)) 30%, transparent);
 }
 
 .markerIcon {
@@ -71,7 +71,7 @@
 
 /* ── Card ── */
 .card {
-  padding: 1.5rem 1.75rem;
+  padding: 1.75rem 2rem;
   border-radius: var(--radius-md);
   background: var(--glass-bg);
   backdrop-filter: blur(12px);
@@ -80,8 +80,16 @@
 }
 
 .item:hover .card {
-  border-color: rgba(0, 255, 136, 0.12);
+  border-color: color-mix(in srgb, var(--accent, var(--color-accent)) 20%, transparent);
   transform: translateX(4px);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .year {
@@ -89,24 +97,80 @@
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--color-accent);
-  background: var(--color-accent-dim);
+  color: var(--accent, var(--color-accent));
+  background: color-mix(in srgb, var(--accent, var(--color-accent)) 10%, transparent);
   padding: 0.15rem 0.5rem;
   border-radius: 100px;
   letter-spacing: 0.08em;
-  margin-bottom: 0.5rem;
+}
+
+.company {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .title {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 0.375rem;
+  margin-bottom: 0.5rem;
 }
 
 .description {
   font-size: 0.875rem;
   color: var(--color-text-secondary);
   line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* ── Achievements List ── */
+.achievements {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0;
+}
+
+.achievement {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.achievementDot {
+  flex-shrink: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent, var(--color-accent));
+  margin-top: 0.45rem;
+}
+
+/* ── Tags ── */
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+  border-radius: 100px;
+  color: var(--color-text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 /* ── Responsive ── */
@@ -131,5 +195,9 @@
 
   .card {
     padding: 1.25rem;
+  }
+
+  .title {
+    font-size: 1.1rem;
   }
 }

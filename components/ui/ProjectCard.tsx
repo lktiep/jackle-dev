@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import styles from './ProjectCard.module.css';
 
@@ -10,6 +11,7 @@ interface ProjectCardProps {
   tags: string[];
   href?: string;
   accent?: string;
+  image?: string;
   size?: 'featured' | 'large' | 'medium';
   icon?: string;
   gradient?: string;
@@ -28,6 +30,7 @@ export default function ProjectCard({
   gradient = 'linear-gradient(135deg, #0a2e1a, #0d3d2e)',
   year,
   role,
+  image,
 }: ProjectCardProps) {
   const cardRef = useRef<HTMLAnchorElement>(null);
 
@@ -84,10 +87,25 @@ export default function ProjectCard({
       style={{ '--card-accent': accent } as React.CSSProperties}
     >
       {/* Visual area */}
-      <div className={styles.visual} style={{ background: gradient }}>
-        <div className={styles.visualIcon}>{icon}</div>
-        <div className={styles.visualGrid} />
-        <div className={styles.visualGlow} />
+      <div className={styles.visual} style={{ background: image ? 'transparent' : gradient }}>
+        {image ? (
+          <>
+            <Image
+              src={image}
+              alt={title}
+              fill
+              className={styles.visualImage}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+            <div className={styles.visualImageOverlay} />
+          </>
+        ) : (
+          <>
+            <div className={styles.visualIcon}>{icon}</div>
+            <div className={styles.visualGrid} />
+            <div className={styles.visualGlow} />
+          </>
+        )}
       </div>
 
       {/* Glare effect */}

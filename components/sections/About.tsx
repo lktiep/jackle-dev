@@ -5,10 +5,20 @@ import gsap from 'gsap';
 import AnimatedText from '@/components/ui/AnimatedText';
 import styles from './About.module.css';
 
+const KEYWORDS = [
+  'Distributed Systems',
+  'Real-time Platforms',
+  'AI-native Builder',
+  'Cloud-native',
+  'System Architecture',
+  'Technical Leadership',
+];
+
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
+  const tagsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -28,6 +38,15 @@ export default function About() {
                 { opacity: 1, y: 0, stagger: 0.12, duration: 0.8, ease: 'power3.out', delay: 0.4 }
               );
             }
+
+            const tags = tagsRef.current?.children;
+            if (tags) {
+              gsap.fromTo(tags,
+                { opacity: 0, scale: 0.8 },
+                { opacity: 1, scale: 1, stagger: 0.06, duration: 0.5, ease: 'back.out(1.7)', delay: 0.6 }
+              );
+            }
+
             observer.unobserve(entry.target);
           }
         });
@@ -69,22 +88,29 @@ export default function About() {
 
           <div className={styles.bio}>
             <p className="text-body-lg">
-              Since <strong>2006</strong>, I&apos;ve been architecting and building software that matters.
-              From scaling <strong>MMO game servers</strong> handling thousands of concurrent players,
-              to engineering <strong>crypto trading platforms</strong>,
-              to leading <strong>AI-powered agriculture-tech</strong> as CTO —
-              I bring nearly two decades of battle-tested experience in shipping products at scale.
+              CTO / Head of Engineering with <strong>15+ years</strong> of experience building
+              and scaling high-performance systems across <strong>telecom, SaaS, gaming,
+              Web3, and AgriTech</strong> domains.
             </p>
             <p className={styles.bioSecondary}>
-              My philosophy: technology should amplify human potential. I combine deep
-              technical expertise with product thinking to build systems that are both
-              elegantly engineered and genuinely impactful.
+              Proven track record of architecting and delivering{' '}
+              <strong>distributed systems handling millions of users</strong>, including
+              real-time multiplayer platforms, large-scale data systems, and cloud-native
+              infrastructures. Known for a <strong>builder mindset</strong> — reverse
+              engineering complex systems, designing custom infrastructure, and leveraging
+              AI to significantly accelerate development velocity.
             </p>
+          </div>
+
+          <div ref={tagsRef} className={styles.tags}>
+            {KEYWORDS.map((kw) => (
+              <span key={kw} className={styles.tag}>{kw}</span>
+            ))}
           </div>
 
           <div ref={statsRef} className={styles.stats}>
             <div className={styles.statItem}>
-              <span className={styles.statValue}>20+</span>
+              <span className={styles.statValue}>15+</span>
               <span className={styles.statLabel}>Years Experience</span>
             </div>
             <div className={styles.statItem}>
@@ -92,12 +118,12 @@ export default function About() {
               <span className={styles.statLabel}>Products Shipped</span>
             </div>
             <div className={styles.statItem}>
-              <span className={styles.statValue}>CTO</span>
-              <span className={styles.statLabel}>Current Role</span>
+              <span className={styles.statValue}>300+</span>
+              <span className={styles.statLabel}>Engineers Led</span>
             </div>
             <div className={styles.statItem}>
-              <span className={styles.statValue}>∞</span>
-              <span className={styles.statLabel}>Curiosity</span>
+              <span className={styles.statValue}>M+</span>
+              <span className={styles.statLabel}>Users Served</span>
             </div>
           </div>
         </div>

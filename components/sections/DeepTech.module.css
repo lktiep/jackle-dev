@@ -1,0 +1,105 @@
+.deeptech {
+  position: relative;
+}
+
+.subtitle {
+  font-size: 1.0625rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 3rem;
+  max-width: 560px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+/* ── Card — Terminal Style ── */
+.card {
+  position: relative;
+  padding: 2rem;
+  border-radius: var(--radius-md);
+  background: rgba(10, 10, 20, 0.8);
+  border: 1px solid rgba(0, 255, 136, 0.08);
+  transition: transform var(--transition-medium), border-color var(--transition-medium), box-shadow var(--transition-medium);
+  opacity: 0;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  opacity: 0.3;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 255, 136, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 255, 136, 0.06);
+}
+
+.cardIcon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cardBody {
+  margin-bottom: 1.25rem;
+}
+
+.cardTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-primary);
+}
+
+.cardDetail {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* ── Terminal Decoration ── */
+.terminalDeco {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.terminalPrompt {
+  color: var(--color-accent);
+}
+
+.terminalCmd {
+  color: var(--color-text-muted);
+}
+
+.terminalCursor {
+  color: var(--color-accent);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+}

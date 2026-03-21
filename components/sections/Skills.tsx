@@ -7,40 +7,73 @@ import styles from './Skills.module.css';
 
 const SKILL_CATEGORIES = [
   {
-    category: 'Frontend',
+    category: 'Architecture & Systems',
+    icon: '🧠',
     skills: [
-      { name: 'React / Next.js', level: 95 },
-      { name: 'TypeScript', level: 90 },
-      { name: 'CSS / Animations', level: 88 },
-      { name: 'Three.js / WebGL', level: 70 },
+      'Distributed Systems',
+      'Microservices Architecture',
+      'Real-time Systems',
+      'Multiplayer Networking',
+      'High-Performance Computing',
+      'Event-driven Architecture',
+      'Multi-threading & Concurrency',
     ],
+    accentColor: '#00ff88',
   },
   {
-    category: 'Backend',
+    category: 'Cloud & Infrastructure',
+    icon: '☁️',
     skills: [
-      { name: 'Node.js', level: 88 },
-      { name: 'Python', level: 82 },
-      { name: 'PostgreSQL', level: 85 },
-      { name: 'Supabase', level: 92 },
+      'Kubernetes (HPA/VPA)',
+      'AWS / GCP Multi-cloud',
+      'CI/CD Pipelines',
+      'Docker & Containerization',
+      'Observability & Monitoring',
+      'Auto-scaling',
+      'Infrastructure as Code',
     ],
+    accentColor: '#00ddff',
   },
   {
-    category: 'AI & ML',
+    category: 'Data & Backend',
+    icon: '🔧',
     skills: [
-      { name: 'TensorFlow / TFLite', level: 75 },
-      { name: 'Gemini AI', level: 80 },
-      { name: 'Computer Vision', level: 72 },
-      { name: 'Prompt Engineering', level: 88 },
+      'Kafka (Event Streaming)',
+      'Redis (Real-time State)',
+      'gRPC Communication',
+      'PostgreSQL',
+      'Big Data Pipelines',
+      'Supabase',
+      'Node.js / .NET',
     ],
+    accentColor: '#ffaa00',
   },
   {
-    category: 'DevOps & Cloud',
+    category: 'Specialized Domains',
+    icon: '🎮',
     skills: [
-      { name: 'Docker', level: 82 },
-      { name: 'GCP', level: 78 },
-      { name: 'Cloudflare', level: 90 },
-      { name: 'Vercel', level: 92 },
+      'Game Backend (Unity, WebGL)',
+      'Reverse Engineering (ASM)',
+      'Blockchain / Web3',
+      'AI-assisted Development',
+      'Custom TCP Networking',
+      'Protocol Reconstruction',
+      'Tokenomics Design',
     ],
+    accentColor: '#ff6644',
+  },
+  {
+    category: 'Engineering Principles',
+    icon: '📐',
+    skills: [
+      'SOLID & Clean Architecture',
+      'System Design at Scale',
+      'Performance Optimization',
+      'Developer Productivity',
+      'Technical Leadership',
+      'Product-driven Engineering',
+    ],
+    accentColor: '#8855ff',
   },
 ];
 
@@ -53,31 +86,24 @@ export default function Skills() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && gridRef.current) {
-            // Animate category cards
             const cards = gridRef.current.querySelectorAll(`.${styles.card}`);
             gsap.fromTo(
               cards,
               { opacity: 0, y: 40 },
               {
-                opacity: 1,
-                y: 0,
-                stagger: 0.15,
-                duration: 0.8,
-                ease: 'power3.out',
+                opacity: 1, y: 0,
+                stagger: 0.12, duration: 0.8, ease: 'power3.out',
               }
             );
 
-            // Animate progress bars
-            const bars = gridRef.current.querySelectorAll(`.${styles.barFill}`);
+            // Animate tags with delay
+            const tags = gridRef.current.querySelectorAll(`.${styles.skillTag}`);
             gsap.fromTo(
-              bars,
-              { scaleX: 0 },
+              tags,
+              { opacity: 0, scale: 0.85 },
               {
-                scaleX: 1,
-                stagger: 0.05,
-                duration: 1.2,
-                ease: 'power3.out',
-                delay: 0.3,
+                opacity: 1, scale: 1,
+                stagger: 0.02, duration: 0.4, ease: 'back.out(1.7)', delay: 0.4,
               }
             );
 
@@ -85,7 +111,7 @@ export default function Skills() {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -99,10 +125,10 @@ export default function Skills() {
       id="skills"
     >
       <div className="container">
-        <span className="section-label">Skills</span>
+        <span className="section-label">Expertise</span>
 
         <AnimatedText
-          text="Tech Arsenal"
+          text="Core Expertise"
           as="h2"
           className="text-h1"
           animation="words"
@@ -110,27 +136,23 @@ export default function Skills() {
         />
 
         <p className={styles.description}>
-          The tools and technologies I use to bring ideas to life.
+          Deep technical knowledge across architecture, cloud, data systems, and specialized domains.
         </p>
 
         <div ref={gridRef} className={styles.grid}>
           {SKILL_CATEGORIES.map((cat) => (
-            <div key={cat.category} className={`${styles.card} glass`}>
-              <h3 className={styles.catTitle}>{cat.category}</h3>
-              <div className={styles.skillList}>
+            <div
+              key={cat.category}
+              className={`${styles.card} glass`}
+              style={{ '--card-accent': cat.accentColor } as React.CSSProperties}
+            >
+              <div className={styles.cardHeader}>
+                <span className={styles.catIcon}>{cat.icon}</span>
+                <h3 className={styles.catTitle}>{cat.category}</h3>
+              </div>
+              <div className={styles.tagCloud}>
                 {cat.skills.map((skill) => (
-                  <div key={skill.name} className={styles.skillItem}>
-                    <div className={styles.skillHeader}>
-                      <span className={styles.skillName}>{skill.name}</span>
-                      <span className={styles.skillLevel}>{skill.level}%</span>
-                    </div>
-                    <div className={styles.barTrack}>
-                      <div
-                        className={styles.barFill}
-                        style={{ '--fill-width': `${skill.level}%` } as React.CSSProperties}
-                      />
-                    </div>
-                  </div>
+                  <span key={skill} className={styles.skillTag}>{skill}</span>
                 ))}
               </div>
             </div>

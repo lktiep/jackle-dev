@@ -5,8 +5,10 @@ import styles from './Navbar.module.css';
 
 const NAV_LINKS = [
   { label: 'About', href: '#about' },
+  { label: 'Experience', href: '#journey' },
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
+  { label: 'Achievements', href: '#achievements' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -33,7 +35,7 @@ export default function Navbar() {
     >
       <div className={styles.inner}>
         <a href="#" className={styles.logo}>
-          <span className={styles.logoAccent}>J</span>ackle
+          <span className={styles.logoAccent}>J</span>ack Le
           <span className={styles.logoDot}>.</span>
         </a>
 
@@ -48,7 +50,7 @@ export default function Navbar() {
         </ul>
 
         <a
-          href="https://github.com/jackle-dev"
+          href="https://github.com/lktiep"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.ghLink}

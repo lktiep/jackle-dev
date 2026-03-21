@@ -11,11 +11,18 @@ const HeroScene = dynamic(() => import('@/components/three/HeroScene'), {
   ssr: false,
 });
 
+const HERO_STATS = [
+  { value: '15+', label: 'Years Experience' },
+  { value: 'M+', label: 'Users Served' },
+  { value: '5+', label: 'Companies Led' },
+];
+
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const tl = gsap.timeline({ delay: 0.5 });
@@ -34,6 +41,16 @@ export default function Hero() {
       '-=0.4'
     );
 
+    if (statsRef.current) {
+      const items = statsRef.current.children;
+      tl.fromTo(
+        items,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, stagger: 0.12, duration: 0.6, ease: 'power3.out' },
+        '-=0.3'
+      );
+    }
+
     tl.fromTo(
       scrollIndicatorRef.current,
       { opacity: 0 },
@@ -48,11 +65,11 @@ export default function Hero() {
 
       <div className={styles.content}>
         <div className={styles.labelRow}>
-          <span className="section-label">Full-Stack Developer</span>
+          <span className="section-label">CTO / Head of Engineering</span>
         </div>
 
         <AnimatedText
-          text="Jackle"
+          text="Jack Le"
           as="h1"
           className={`text-display ${styles.name}`}
           delay={0.3}
@@ -60,10 +77,9 @@ export default function Hero() {
         />
 
         <p ref={subtitleRef} className={styles.subtitle}>
-          Crafting digital experiences at the intersection of{' '}
-          <span className="gradient-text">design</span>,{' '}
-          <span className="gradient-text">code</span>, and{' '}
-          <span className="gradient-text">AI</span>.
+          Building <span className="gradient-text">distributed systems</span> handling
+          millions of users — from real-time multiplayer platforms to{' '}
+          <span className="gradient-text">AI-native</span> products.
         </p>
 
         <div ref={ctaRef} className={styles.cta}>
@@ -71,6 +87,15 @@ export default function Hero() {
           <GlowButton href="#contact" variant="secondary">
             Get in Touch
           </GlowButton>
+        </div>
+
+        <div ref={statsRef} className={styles.heroStats}>
+          {HERO_STATS.map((stat) => (
+            <div key={stat.label} className={styles.heroStat}>
+              <span className={styles.heroStatValue}>{stat.value}</span>
+              <span className={styles.heroStatLabel}>{stat.label}</span>
+            </div>
+          ))}
         </div>
       </div>
 

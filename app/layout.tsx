@@ -56,6 +56,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9254898687876671"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>
         <SmoothScroll>{children}</SmoothScroll>
       </body>

@@ -1230,6 +1230,101 @@ html.motion .e2e-stage:not(.is-lit) .e2e-node {
   }
 }
 
+/* Deep dives: two evidence panels under a case */
+.dives {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+.dive {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: clamp(22px, 3.4vw, 36px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+.dive h4 {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+  text-wrap: balance;
+}
+.dive-big {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  padding: 16px 0;
+  border-block: 1px solid var(--line);
+}
+.dive-big-value {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.dive-big-label {
+  flex: 1 1 180px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--accent);
+}
+.dive-rows {
+  display: grid;
+}
+.dive-rows div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+.dive-rows div:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.dive-rows dt {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.dive-rows dd {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.dive-foot {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+}
+@media (min-width: 560px) {
+  .dive-rows div {
+    grid-template-columns: 104px minmax(0, 1fr);
+    gap: 16px;
+  }
+  .dive-rows dt {
+    padding-top: 3px;
+  }
+}
+@media (min-width: 1024px) {
+  .dives {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .also {
   margin-top: clamp(96px, 12vw, 160px);
   display: grid;

@@ -19,7 +19,7 @@ export const PROOF = [
   { value: 18, suffix: '', label: 'years shipping production systems', note: 'since 2008' },
   { value: 300, suffix: '', label: 'engineer division I was Technical Architect for', note: 'TMA Solutions · DG1' },
   { value: 96.0, decimals: 1, suffix: '%', label: 'recall@5 on LongMemEval-S, 500 questions', note: 'Cortex Hub benchmark' },
-  { value: 1.6, decimals: 1, suffix: ' ms', label: 'sim tick p50 with 64 players, 718 units', note: 'RA2 Studio server' },
+  { value: 10500, suffix: '+', label: 'players in the first month after launch', note: 'Xóm Nông Trại · Oct 2026' },
   { value: 4000, suffix: '', label: 'CCU on 4 shards — one 4-vCPU box that also runs Postgres and Redis', note: 'Xóm Nông Trại load test' },
   { value: 4, suffix: '', label: 'countries on-site with enterprise clients', note: 'Vietnam · USA · UK · Australia' },
 ];
@@ -119,6 +119,16 @@ export type CaseStudy = {
   status: string;
   image?: { src: string; alt: string };
   spec?: { file: string; big: string; bigLabel: string; rows: [string, string][] };
+  /** Side-by-side deep dives under the case (e.g. performance, AI in production). */
+  deepDives?: {
+    id: string;
+    eyebrow: string;
+    title: string;
+    big: string;
+    bigLabel: string;
+    rows: [string, string][];
+    foot: string;
+  }[];
   /** Every discipline that went into the product, for projects owned end to end. */
   endToEnd?: {
     title: string;
@@ -137,7 +147,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     period: '2026',
     role: 'Founder · built end to end',
     summary:
-      'The first product I took from a blank repo to live production across every discipline. A social farming game whose hardest problems are financial: every coin is money-like, players act concurrently, and live-ops staff need power without risk.',
+      'The first product I took from a blank repo to live production across every discipline — 10,500+ players in its first month. A social farming game whose hardest problems are financial: every coin is money-like, players act concurrently, and live-ops staff need power without risk.',
     problem:
       'Concurrent players, a currency that must never drift, and operators (human and AI) who need to change prices and issue refunds safely.',
     architecture: [
@@ -147,10 +157,42 @@ export const CASE_STUDIES: CaseStudy[] = [
       'Ops MCP: AI agents read through the admin API only and can only file proposals; refunds above a threshold need a second, different approver.',
     ],
     evidence: [
+      { value: '10,500+', label: 'players in the first month after launch (Oct 2026)' },
+      { value: '23 ms', label: 'API p95 in production at ~4.1M requests a day' },
       { value: '4,000', label: 'CCU on 4 shards, one 4-vCPU box shared with Postgres + Redis' },
-      { value: '5.0 → 2.9', label: 'Postgres queries per HTTP request' },
-      { value: '171', label: 'Playwright end-to-end specs' },
-      { value: '40', label: 'ops tools · 11 proposal-only' },
+      { value: '−82%', label: 'draw calls on a full farm: 2,101 → 375' },
+    ],
+    deepDives: [
+      {
+        id: 'perf',
+        eyebrow: 'Performance · browser to database',
+        title: 'Optimised to the bone — and measured at every layer',
+        big: '2,101 → 375',
+        bigLabel: 'draw calls on a fully built Level-200 farm. Each change below landed with its before/after number.',
+        rows: [
+          ['draw calls', 'Static parts merged by vertex colour; animals, dogs and swaying plants batched into BatchedMesh — 1,258 → 286 close up, 2,101 → 375 zoomed out.'],
+          ['gpu', 'Measured what screen-space ambient occlusion really cost, then made it opt-in: 9.0 → 5.2 ms of GPU time per frame.'],
+          ['download', '3D kit 32 → 9.5 MB with meshopt + brotli, texture atlas 16.8 → 3.7 MB as WebP, texture memory 64 → 37 MB.'],
+          ['old devices', 'Devices graded A–D; quality tiers follow frame time, Low Power mode and battery. 2018 iPad 6: 36 → 50 fps.'],
+          ['server', 'p50 4.9 ms · p95 22.8 ms · p99 44.7 ms over 4.1M production API requests in one day, zero 5xx.'],
+        ],
+        foot: 'Built for the phones players actually own, not the laptop it was written on.',
+      },
+      {
+        id: 'ai',
+        eyebrow: 'AI in production',
+        title: 'The agent proposes. A person decides.',
+        big: '50+',
+        bigLabel: 'proposals filed by the ops agent and decided by a human — 48 of the latest 50 approved.',
+        rows: [
+          ['reads', 'Metrics, the ledger and player reports over MCP — through the admin API only, never the database.'],
+          ['fraud', 'Found an 8-account ring rigging a minigame leaderboard and alt accounts buying at 2–5× the median price to move gold; proposed the bans and clawbacks.'],
+          ['evidence', 'Every proposal carries its reason, a before-state snapshot and, for balance changes, a 7-day impact estimate: "102 of 807 steals would be blocked".'],
+          ['guardrails', '40 tools, 11 of them proposal-only. Small writes are capped per day; refunds above a threshold need a second, different approver.'],
+          ['report', 'A daily 08:00 Telegram report — active players, retention cohorts, economy flows, API p50/p95/p99, threshold alerts — with one-tap approve or reject.'],
+        ],
+        foot: 'The shape of a claims agent: the AI reads and builds the case, a person signs off, the audit trail keeps both.',
+      },
     ],
     stack: ['TypeScript', 'Fastify', 'PostgreSQL 16', 'Redis · BullMQ', 'Three.js', 'MCP', 'OpenTelemetry'],
     link: { href: 'https://nongtrai.jackle.dev', label: 'Play it live · nongtrai.jackle.dev' },
@@ -206,7 +248,7 @@ export const CASE_STUDIES: CaseStudy[] = [
           value: 'Daily',
           label: 'AI ops review, human approval',
           detail:
-            'An ops agent reads metrics over MCP every morning and files proposals; I approve or reject them on Telegram. Nothing changes without a person.',
+            'An ops agent reads metrics over MCP every morning and files proposals — fraud rings, price anomalies, balance changes. I approve or reject on Telegram. Nothing changes without a person.',
         },
       ],
       note: '3,550+ commits of my own · AI coding agents worked to my specs, tests and review gates',

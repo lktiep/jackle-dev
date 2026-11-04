@@ -93,6 +93,35 @@ function EndToEnd({ c }: { c: CaseStudy }) {
   );
 }
 
+function DeepDives({ c }: { c: CaseStudy }) {
+  if (!c.deepDives?.length) return null;
+  return (
+    <div className="dives">
+      {c.deepDives.map((d) => (
+        <section className={`dive dive--${d.id}`} key={d.id} aria-labelledby={`dive-${c.slug}-${d.id}`} data-reveal>
+          <p className="mono e2e-eyebrow">
+            <span className="accent">{d.eyebrow}</span>
+          </p>
+          <h4 id={`dive-${c.slug}-${d.id}`}>{d.title}</h4>
+          <div className="dive-big">
+            <span className="dive-big-value">{d.big}</span>
+            <span className="dive-big-label">{d.bigLabel}</span>
+          </div>
+          <dl className="dive-rows">
+            {d.rows.map(([k, v]) => (
+              <div key={k}>
+                <dt className="mono">{k}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="dive-foot">{d.foot}</p>
+        </section>
+      ))}
+    </div>
+  );
+}
+
 export default function Work() {
   return (
     <section id="work" className="section" aria-labelledby="work-title">
@@ -185,6 +214,7 @@ export default function Work() {
                 </div>
               </article>
               <EndToEnd c={c} />
+              <DeepDives c={c} />
             </div>
           ))}
         </div>

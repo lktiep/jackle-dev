@@ -224,7 +224,7 @@ export const CASE_STUDIES: CaseStudy[] = [
           value: '20',
           label: 'audio cues synthesised in code',
           detail:
-            'Water, rod and wind modelled physically (Minnaert bubbles, Karplus-Strong); pentatonic score via MIDI → FluidSynth, seeded for identical renders.',
+            'Water, rod and wind modelled physically (Minnaert bubbles, Karplus-Strong); pentatonic score via MIDI → FluidSynth, seeded for identical renders. Background music composed with Gemini.',
         },
         {
           id: 'build',
@@ -419,6 +419,7 @@ export const LEVERAGE = {
   territory: [
     ['3D', 'Image → Blender → WebGPU pipeline, scored by silhouette IoU, SSIM and per-region ΔE.'],
     ['Fabrication', 'Profile curve → spiral toolpath → G-code for five printer profiles, in the browser.'],
+    ['Music', 'Background music composed with Gemini; 20 sound cues synthesised in code, from Karplus-Strong strings to Minnaert bubbles.'],
     ['Game', 'Game design, 3D, release and live operations of Xóm Nông Trại — every discipline, not just the code.'],
   ] as [string, string][],
 };

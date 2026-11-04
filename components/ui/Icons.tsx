@@ -26,6 +26,12 @@ export const ArrowDown = () => (
   </svg>
 );
 
+export const Download = () => (
+  <svg {...base}>
+    <path d="M8 2.5v7.5M4.75 7 8 10.25 11.25 7M2.75 13.25h10.5" />
+  </svg>
+);
+
 export const Mail = () => (
   <svg {...base}>
     <rect x="2" y="3.5" width="12" height="9" rx="1.5" />

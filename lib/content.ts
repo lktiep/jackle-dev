@@ -20,7 +20,7 @@ export const PROOF = [
   { value: 300, suffix: '', label: 'engineer division I was Technical Architect for', note: 'TMA Solutions · DG1' },
   { value: 96.0, decimals: 1, suffix: '%', label: 'recall@5 on LongMemEval-S, 500 questions', note: 'Cortex Hub benchmark' },
   { value: 1.6, decimals: 1, suffix: ' ms', label: 'sim tick p50 with 64 players, 718 units', note: 'RA2 Studio server' },
-  { value: 4000, suffix: '', label: 'CCU ceiling, up from 2,500 after one optimisation pass', note: 'Xóm Nông Trại load test' },
+  { value: 4000, suffix: '', label: 'CCU on 4 shards — one 4-vCPU box that also runs Postgres and Redis', note: 'Xóm Nông Trại load test' },
   { value: 4, suffix: '', label: 'countries on-site with enterprise clients', note: 'Vietnam · USA · UK · Australia' },
 ];
 
@@ -140,25 +140,25 @@ export const CASE_STUDIES: CaseStudy[] = [
       'Ops MCP: AI agents read through the admin API only and can only file proposals; refunds above a threshold need a second, different approver.',
     ],
     evidence: [
-      { value: '2.5k → 4k', label: 'CCU ceiling after one server pass' },
-      { value: '−12%', label: 'CPU per request (930 → 818 µs)' },
+      { value: '4,000', label: 'CCU on 4 shards, one 4-vCPU box shared with Postgres + Redis' },
+      { value: '5.0 → 2.9', label: 'Postgres queries per HTTP request' },
       { value: '171', label: 'Playwright end-to-end specs' },
       { value: '40', label: 'ops tools · 11 proposal-only' },
     ],
     stack: ['TypeScript', 'Fastify', 'PostgreSQL 16', 'Redis · BullMQ', 'Three.js', 'MCP', 'OpenTelemetry'],
     status: 'Personal project · private repository',
     spec: {
-      file: 'xom-nong-trai / architecture',
+      file: 'xom-nong-trai / load-test',
       big: '4,000',
-      bigLabel: 'CCU ceiling on 4 shards, up from 2,500',
+      bigLabel: 'CCU on 4 shards — all on one small 4-vCPU box',
       rows: [
-        ['server', 'Fastify · WebSocket · authoritative'],
-        ['rules', 'shared package · client predicts'],
-        ['money', 'append-only ledger · idempotency keys'],
-        ['effects', 'transactional outbox → BullMQ'],
-        ['config', 'versioned bundles · sha256'],
-        ['ops', 'MCP · 26 read · 3 capped · 11 propose'],
-        ['tests', '171 Playwright end-to-end specs'],
+        ['box', '4 vCPU · 8 GB, shared by Node, Postgres, Redis, nginx'],
+        ['server', '4 Node shards · ~1 GB each · nginx least_conn'],
+        ['postgres', '16 · 2.8 GB · max_connections 100 · pool 10 / shard'],
+        ['redis', '7 · 819 MB · AOF on'],
+        ['limit', 'CPU-bound on the shared box; Postgres is the largest consumer'],
+        ['queries', 'Postgres queries per request 5.0 → 2.9'],
+        ['money', 'append-only ledger · idempotency keys · outbox'],
       ],
     },
   },
@@ -339,10 +339,12 @@ export const EXPERIENCE = [
     org: 'Ansarada',
     summary: 'Enterprise SaaS for deal management and virtual data rooms.',
     highlights: [
-      'Clean code, automated testing and CI/CD as the default, in a top-16 best-workplace engineering culture.',
+      'Engineered inside the most disciplined microservices architecture I have worked in: small services, explicit contracts, CI/CD on every change.',
+      'Test-driven development as the norm; kept unit-test coverage above 90% on the code I owned.',
+      'Tuned SQL Server queries and indexes on performance-critical paths — work singled out for praise by the CTO.',
       'Moved from outsourcing to product engineering: features measured by customer value.',
     ],
-    stack: ['.NET', 'SaaS', 'CI/CD', 'Clean Architecture'],
+    stack: ['.NET', 'Microservices', 'SQL Server', 'TDD', 'CI/CD'],
   },
   {
     period: '2008 — 2016',
@@ -400,3 +402,6 @@ export const RECOGNITION = [
   { title: 'Products reaching 100,000+ users and downloads', note: 'Consumer scale' },
   { title: 'Reverse-engineered a 3D online game client at assembly level', note: 'Protocol reconstruction' },
 ];
+
+/** The printable CV, rendered from /cv by `npm run cv`. */
+export const CV_FILE = { href: '/Jack-Le-CV.pdf', name: 'Jack-Le-CV.pdf' } as const;

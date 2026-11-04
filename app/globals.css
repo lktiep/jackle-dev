@@ -319,6 +319,21 @@ html.motion .progress {
   border-color: rgba(255, 255, 255, 0.28);
   background: rgba(255, 255, 255, 0.03);
 }
+.btn--dl:hover svg {
+  transform: translateY(2px);
+}
+.btn-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  padding-left: 10px;
+  border-left: 1px solid var(--line-strong);
+}
+.nav-actions {
+  display: flex;
+  gap: 8px;
+}
 .btn--sm {
   height: 36px;
   padding: 0 14px;

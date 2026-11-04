@@ -1,6 +1,6 @@
 import ArchitectureDiagram from '@/components/hero/ArchitectureDiagram';
-import { ArrowDown, ArrowRight } from '@/components/ui/Icons';
-import { PROFILE } from '@/lib/content';
+import { ArrowDown, ArrowRight, Download } from '@/components/ui/Icons';
+import { CV_FILE, PROFILE } from '@/lib/content';
 
 const YEARS = new Date().getFullYear() - PROFILE.since;
 
@@ -28,6 +28,9 @@ export default function Hero() {
           <div className="hero-actions" data-intro style={{ '--i': 4 } as React.CSSProperties}>
             <a className="btn btn--primary" href="#work">
               Selected work <ArrowDown />
+            </a>
+            <a className="btn btn--ghost btn--dl" href={CV_FILE.href} download={CV_FILE.name}>
+              <Download /> Download CV <span className="btn-meta">PDF</span>
             </a>
             <a className="btn btn--ghost" href={`mailto:${PROFILE.email}`}>
               {PROFILE.email} <ArrowRight />

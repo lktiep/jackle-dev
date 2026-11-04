@@ -1,4 +1,5 @@
-import { PROFILE } from '@/lib/content';
+import { Download } from '@/components/ui/Icons';
+import { CV_FILE, PROFILE } from '@/lib/content';
 
 const LINKS = [
   ['#practice', 'Practice'],
@@ -22,9 +23,14 @@ export default function Nav() {
             </a>
           ))}
         </nav>
-        <a className="btn btn--ghost btn--sm" href="#contact">
-          Contact
-        </a>
+        <div className="nav-actions">
+          <a className="btn btn--ghost btn--sm btn--dl" href={CV_FILE.href} download={CV_FILE.name} aria-label="Download CV (PDF)">
+            <Download /> CV
+          </a>
+          <a className="btn btn--ghost btn--sm" href="#contact">
+            Contact
+          </a>
+        </div>
       </div>
     </header>
   );

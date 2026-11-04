@@ -1,5 +1,5 @@
-import { ArrowRight, GitHub, Mail } from '@/components/ui/Icons';
-import { PROFILE } from '@/lib/content';
+import { ArrowRight, Download, GitHub, Mail } from '@/components/ui/Icons';
+import { CV_FILE, PROFILE } from '@/lib/content';
 
 export default function Contact() {
   return (
@@ -17,6 +17,9 @@ export default function Contact() {
           <div className="contact-actions" data-reveal>
             <a className="btn btn--primary" href={`mailto:${PROFILE.email}`}>
               <Mail /> Email me <ArrowRight />
+            </a>
+            <a className="btn btn--ghost btn--dl" href={CV_FILE.href} download={CV_FILE.name}>
+              <Download /> CV <span className="btn-meta">PDF · 2 pages</span>
             </a>
             <a className="btn btn--ghost" href={PROFILE.github} target="_blank" rel="noopener noreferrer">
               <GitHub /> GitHub

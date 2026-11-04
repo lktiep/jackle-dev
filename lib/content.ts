@@ -30,7 +30,7 @@ export const PRACTICE = [
     step: '01',
     title: 'Frame the problem with the people who own it',
     body:
-      'Solution workshops and pre-sales with insurers, banks and hospitals. I turn a business outcome into constraints a system can be judged against: volumes, latency budgets, data residency, audit and compliance.',
+      'Solution workshops and pre-sales with insurers (AAA Insurance), banks and hospitals. I turn a business outcome into constraints a system can be judged against: volumes, latency budgets, data residency, audit and compliance.',
     points: ['Stakeholder discovery', 'Non-functional requirements', 'Build vs. buy', 'Cost envelope'],
     artifact: {
       kind: 'brief',
@@ -146,7 +146,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       { value: '40', label: 'ops tools · 11 proposal-only' },
     ],
     stack: ['TypeScript', 'Fastify', 'PostgreSQL 16', 'Redis · BullMQ', 'Three.js', 'MCP', 'OpenTelemetry'],
-    status: 'Private repository',
+    status: 'Personal project · private repository',
     spec: {
       file: 'xom-nong-trai / architecture',
       big: '4,000',
@@ -214,7 +214,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       { value: '60 fps', label: '64 × 500 units, frame p99 2.7 ms' },
     ],
     stack: ['Rust', 'WebAssembly', 'tokio', 'WebGL2', 'Cloudflare Workers', 'Durable Objects', 'WebRTC'],
-    status: 'Private repository',
+    status: 'Personal project · private repository',
     spec: {
       file: 'ra2-studio / bench',
       big: '1.6 ms',
@@ -353,6 +353,7 @@ export const EXPERIENCE = [
       'Owned architecture, technical direction and mentoring across the division.',
       'High-performance multi-threaded C/C++ on Windows, Linux and Solaris; led Windows → Linux and 32 → 64-bit ports down to drivers.',
       'On-site with customers in the USA (twice, six months each), the UK and Australia (twice).',
+      'Outsourced delivery for banking and healthcare clients (client names under NDA).',
     ],
     stack: ['C/C++', 'Telecom', 'Linux', 'Solaris', 'Multi-threading'],
   },

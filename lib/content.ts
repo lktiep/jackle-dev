@@ -119,6 +119,13 @@ export type CaseStudy = {
   status: string;
   image?: { src: string; alt: string };
   spec?: { file: string; big: string; bigLabel: string; rows: [string, string][] };
+  /** Every discipline that went into the product, for projects owned end to end. */
+  endToEnd?: {
+    title: string;
+    intro: string;
+    stages: { id: string; discipline: string; value: string; label: string; detail: string }[];
+    note: string;
+  };
 };
 
 export const CASE_STUDIES: CaseStudy[] = [
@@ -128,9 +135,9 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: 'Xóm Nông Trại',
     kicker: 'Server-authoritative social platform with a real economy',
     period: '2026',
-    role: 'Architect & lead engineer',
+    role: 'Founder · built end to end',
     summary:
-      'A social farming game whose hardest problems are financial: every coin is money-like, players act concurrently, and live-ops staff need power without risk.',
+      'The first product I took from a blank repo to live production across every discipline. A social farming game whose hardest problems are financial: every coin is money-like, players act concurrently, and live-ops staff need power without risk.',
     problem:
       'Concurrent players, a currency that must never drift, and operators (human and AI) who need to change prices and issue refunds safely.',
     architecture: [
@@ -146,7 +153,64 @@ export const CASE_STUDIES: CaseStudy[] = [
       { value: '40', label: 'ops tools · 11 proposal-only' },
     ],
     stack: ['TypeScript', 'Fastify', 'PostgreSQL 16', 'Redis · BullMQ', 'Three.js', 'MCP', 'OpenTelemetry'],
+    link: { href: 'https://nongtrai.jackle.dev', label: 'Play it live · nongtrai.jackle.dev' },
     status: 'Personal project · private repository',
+    endToEnd: {
+      title: 'Zero to live — every discipline, one owner',
+      intro:
+        'No studio, no outsourced art or audio. I wrote the design, generated the world, made the sound, built the code, the release process and the operations that run it today.',
+      stages: [
+        {
+          id: 'gameplay',
+          discipline: 'Gameplay',
+          value: '63',
+          label: 'design documents',
+          detail:
+            'Core loop, Level-200 progression, quests, markets and social visits — balanced with 38 Python economy simulations before a config ships.',
+        },
+        {
+          id: 'models',
+          discipline: '3D & art',
+          value: '62',
+          label: 'GLB models from 92 Blender scripts',
+          detail:
+            'A procedural low-poly kit — houses, crops, ten dog breeds — plus a style-locked sprite pipeline for 1,240 PNG assets.',
+        },
+        {
+          id: 'sound',
+          discipline: 'Music & sound',
+          value: '20',
+          label: 'audio cues synthesised in code',
+          detail:
+            'Water, rod and wind modelled physically (Minnaert bubbles, Karplus-Strong); pentatonic score via MIDI → FluidSynth, seeded for identical renders.',
+        },
+        {
+          id: 'build',
+          discipline: 'Build',
+          value: '7',
+          label: 'packages, one TypeScript monorepo',
+          detail:
+            'Three.js client, Fastify server, shared rules, admin console, ops MCP, playtest bots and a Capacitor iOS/Android shell.',
+        },
+        {
+          id: 'process',
+          discipline: 'Process',
+          value: '913 + 171',
+          label: 'test files + Playwright e2e specs',
+          detail:
+            'PR → CI → staging; bots play it on a 30× game clock, then the exact image they passed is promoted to production with auto-rollback.',
+        },
+        {
+          id: 'ops',
+          discipline: 'Operations',
+          value: 'Daily',
+          label: 'AI ops review, human approval',
+          detail:
+            'An ops agent reads metrics over MCP every morning and files proposals; I approve or reject them on Telegram. Nothing changes without a person.',
+        },
+      ],
+      note: '3,550+ commits of my own · AI coding agents worked to my specs, tests and review gates',
+    },
     spec: {
       file: 'xom-nong-trai / load-test',
       big: '4,000',
@@ -293,7 +357,7 @@ export const EXPERIENCE = [
     org: 'Independent · AI & platform engineering',
     summary: 'Design and build production platforms end to end, from the first stakeholder conversation to the on-call runbook.',
     highlights: [
-      'Architected Xóm Nông Trại: ledger-backed economy, idempotent mutations, outbox, and AI ops agents limited to proposals that humans approve.',
+      'Built Xóm Nông Trại end to end — game design, 3D, audio, code, release and operations — now live: ledger-backed economy, idempotent mutations, outbox, AI ops agents limited to proposals that humans approve.',
       'Created Cortex Hub, an open-source MCP platform for agent memory and code intelligence (96.0% recall@5 on LongMemEval-S).',
       'Built a deterministic Rust/WASM simulation and authoritative multiplayer server, benchmarked to 1.6 ms tick p50 at 64 players.',
       'Delivered a multi-tenant AgriTech platform and the Kèo Thơm real-time auction marketplace.',

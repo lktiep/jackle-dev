@@ -109,6 +109,11 @@ export default function CV() {
                   <span className="cv-period">{c.period}</span>
                 </div>
                 <p className="cv-kicker">{c.kicker}</p>
+                {c.endToEnd && (
+                  <p className="cv-owned">
+                    Built end to end: {c.endToEnd.stages.map((s) => s.discipline).join(' · ')}
+                  </p>
+                )}
                 <ul className="cv-evidence">
                   {c.evidence.slice(0, 2).map((ev) => (
                     <li key={ev.label}>

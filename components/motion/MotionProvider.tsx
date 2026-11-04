@@ -21,7 +21,8 @@ declare global {
      data-split       heading split into masked lines
      data-count       count up to the value (data-decimals for precision)
      data-parallax    image drifts inside its frame while scrolling
-     data-draw-line   vertical line scrubbed with the section */
+     data-draw-line   vertical line scrubbed with the section
+     data-draw-x      horizontal rail scrubbed across its track; lights [data-step] siblings */
 export default function MotionProvider({ children }: { children: React.ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
 
@@ -126,6 +127,26 @@ export default function MotionProvider({ children }: { children: React.ReactNode
             scaleY: 1,
             ease: 'none',
             scrollTrigger: { trigger: line.parentElement, start: 'top 70%', end: 'bottom 70%', scrub: 0.4 },
+          });
+        });
+
+        // Horizontal rail that fills with scroll and lights each step as it passes.
+        el.querySelectorAll<HTMLElement>('[data-draw-x]').forEach((fill) => {
+          const track = fill.closest('.e2e-track') ?? fill.parentElement!;
+          const steps = Array.from(track.querySelectorAll<HTMLElement>('[data-step]'));
+          const last = Math.max(1, steps.length - 1);
+          gsap.to(fill, {
+            scaleX: 1,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: track,
+              start: 'top 78%',
+              end: 'bottom 62%',
+              scrub: 0.4,
+              onUpdate(self) {
+                steps.forEach((s, i) => s.classList.toggle('is-lit', self.progress >= (i / last) * 0.96));
+              },
+            },
           });
         });
 

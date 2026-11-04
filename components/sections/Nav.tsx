@@ -4,6 +4,7 @@ import { CV_FILE, PROFILE } from '@/lib/content';
 const LINKS = [
   ['#practice', 'Practice'],
   ['#work', 'Work'],
+  ['#leverage', 'AI'],
   ['#experience', 'Experience'],
   ['#capabilities', 'Capabilities'],
 ];

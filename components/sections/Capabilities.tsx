@@ -6,7 +6,7 @@ export default function Capabilities() {
     <section id="capabilities" className="section" aria-labelledby="cap-title">
       <div className="wrap">
         <header className="section-head">
-          <p className="eyebrow section-label">04 / Capabilities</p>
+          <p className="eyebrow section-label">05 / Capabilities</p>
           <div>
             <h2 id="cap-title" className="section-title" data-split>
               Breadth to design the whole system, <span className="dim">depth to debug any layer of it.</span>

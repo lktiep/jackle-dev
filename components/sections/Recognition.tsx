@@ -5,7 +5,7 @@ export default function Recognition() {
     <section id="recognition" className="section" aria-labelledby="rec-title">
       <div className="wrap">
         <header className="section-head">
-          <p className="eyebrow section-label">05 / Recognition</p>
+          <p className="eyebrow section-label">06 / Recognition</p>
           <h2 id="rec-title" className="section-title" data-split>
             Outside the day job.
           </h2>

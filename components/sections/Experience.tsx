@@ -5,7 +5,7 @@ export default function Experience() {
     <section id="experience" className="section" aria-labelledby="exp-title">
       <div className="wrap">
         <header className="section-head">
-          <p className="eyebrow section-label">03 / Experience</p>
+          <p className="eyebrow section-label">04 / Experience</p>
           <div>
             <h2 id="exp-title" className="section-title" data-split>
               Eighteen years, <span className="dim">engineer to CTO.</span>

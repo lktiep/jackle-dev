@@ -4,6 +4,7 @@ import Hero from '@/components/sections/Hero';
 import Proof from '@/components/sections/Proof';
 import Practice from '@/components/sections/Practice';
 import Work from '@/components/sections/Work';
+import Leverage from '@/components/sections/Leverage';
 import Experience from '@/components/sections/Experience';
 import Capabilities from '@/components/sections/Capabilities';
 import Recognition from '@/components/sections/Recognition';
@@ -20,6 +21,7 @@ export default function Home() {
         <Proof />
         <Practice />
         <Work />
+        <Leverage />
         <Experience />
         <Capabilities />
         <Recognition />

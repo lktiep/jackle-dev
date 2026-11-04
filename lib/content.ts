@@ -383,6 +383,46 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
 ];
 
+export const LEVERAGE = {
+  steps: [
+    {
+      id: 'spec',
+      verb: 'Specify',
+      body: 'I write the contract before any agent touches code: boundaries, invariants, acceptance tests. The agent gets a spec, not a wish.',
+      artifact: 'brief.md · ADR · failing test',
+    },
+    {
+      id: 'delegate',
+      verb: 'Delegate',
+      body: 'Agents run in parallel through Cortex Hub — shared memory, leases, file locks, escalation — so several streams move at once without stepping on each other.',
+      artifact: 'conductor · leases · locks',
+    },
+    {
+      id: 'gate',
+      verb: 'Gate',
+      body: 'Nothing merges on trust. CI, tests and my review stand between an agent and main; in production, agents can only file proposals a person approves.',
+      artifact: 'CI · review · proposal-only tools',
+    },
+    {
+      id: 'measure',
+      verb: 'Measure',
+      body: 'Every claim ends in a number — draw calls, p95, recall@5. If it is not measured, it is not done, whoever wrote the code.',
+      artifact: 'bench · load test · telemetry',
+    },
+  ],
+  evidence: [
+    { value: '3,550+', label: 'commits of my own on one live game, agents working to my specs and gates' },
+    { value: '913 + 171', label: 'test files and Playwright e2e specs guarding that code' },
+    { value: '96.0%', label: 'recall@5 for the agent memory I built to make this work at team scale' },
+    { value: '7', label: 'Claude Code skills distilled from shipping, so the next agent starts ahead' },
+  ],
+  territory: [
+    ['3D', 'Image → Blender → WebGPU pipeline, scored by silhouette IoU, SSIM and per-region ΔE.'],
+    ['Fabrication', 'Profile curve → spiral toolpath → G-code for five printer profiles, in the browser.'],
+    ['Game', 'Game design, 3D, release and live operations of Xóm Nông Trại — every discipline, not just the code.'],
+  ] as [string, string][],
+};
+
 export const ALSO_BUILT = [
   { title: 'Cortex bench harness', note: 'Five-arm controlled experiment measuring what an AI agent still remembers on day two.' },
   { title: '3D Character Lab', note: 'Image → Blender → WebGPU pipeline scored by silhouette IoU, SSIM and per-region ΔE.' },
